@@ -27,8 +27,6 @@ class MainWindow(QtWidgets.QMainWindow):
         for y in range(4):
             for x in range(15):
                 idx = int(int(y / 2) * 15 + x)
-                if np.array_equal(imgs[idx], recons[idx]):
-                    print(idx)
                 axs[y, x].get_xaxis().set_visible(False)
                 axs[y, x].get_yaxis().set_visible(False)
                 if y % 2 == 0:
@@ -38,7 +36,8 @@ class MainWindow(QtWidgets.QMainWindow):
         plt.show()
 
     def error_button_clicked(self):
-        pass
+        re = self.model.compute_reconstruction_error()
+        print(re)
 
 
 app = QtWidgets.QApplication([])
